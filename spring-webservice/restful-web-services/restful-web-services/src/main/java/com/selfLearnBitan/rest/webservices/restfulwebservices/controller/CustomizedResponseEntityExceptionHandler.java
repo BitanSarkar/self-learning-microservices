@@ -1,4 +1,4 @@
-package com.selfLearnBitan.rest.webservices.restfulwebservices.exception;
+package com.selfLearnBitan.rest.webservices.restfulwebservices.controller;
 
 import java.util.Date;
 
@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import com.selfLearnBitan.rest.webservices.restfulwebservices.exception.ExceptionResponse;
+import com.selfLearnBitan.rest.webservices.restfulwebservices.exception.UserNotFoundException;
 
 @ControllerAdvice
 @RestController

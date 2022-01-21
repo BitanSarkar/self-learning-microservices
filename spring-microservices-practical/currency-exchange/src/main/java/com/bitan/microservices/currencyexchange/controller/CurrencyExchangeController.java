@@ -2,6 +2,8 @@ package com.bitan.microservices.currencyexchange.controller;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +24,14 @@ public class CurrencyExchangeController {
 	@Autowired
 	private CurrencyExchangeService cex;
 	
+	private Logger log = LoggerFactory.getLogger(CurrencyExchangeController.class);
 	
 	@GetMapping("/from/{from}/to/{to}")
 	public CurrencyExchange retrieveExchangeValue(
 			@PathVariable String from,
 			@PathVariable String to){
+		
+		log.info("retrieveExchangeValue called with from {} to {}",from,to);
 		to=to.toUpperCase();
 		from=from.toUpperCase();
 		CurrencyExchange ce =  cex.findByFromAndTo(from, to);
