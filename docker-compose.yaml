@@ -11,12 +11,16 @@ services:
     depends_on:
       - naming-server
       - rabbitmq
+      - mongo_db
     environment:
       EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
       SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
       RABBIT_URI: amqp://guest:guest@rabbitmq:5672
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_ZIPKIN_SENDER_TYPE: rabbit
+      SPRING.DATA.MONGODB.HOST: mongo_db
+      SPRING.DATA.MONGODB.PORT: 27017
+      SPRING.DATA.MONGODB.DATABASE: currency-converter
   
   currency-conversion:
     image: bitansarkar/currency-conversion:0.0.1-SNAPSHOT
@@ -79,6 +83,17 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - currency-network
+
+  mongo_db:
+    image: "mongo:4.4.3"
+    mem_limit: 100m
+    restart: always
+    ports:
+      - 27017:12707
+    volumes:
+      - ./mongo/data:/data/db
     networks:
       - currency-network
 
