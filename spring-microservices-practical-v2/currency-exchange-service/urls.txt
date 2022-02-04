@@ -1,0 +1,9 @@
+Currency Exchange Service
+- http://34.121.58.2:8000/currency-exchange/from/USD/to/INR
+
+Currency Conversion Service
+- http://104.155.132.141:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+http://34.121.58.2:8000/actuator/health/
+http://34.121.58.2:8000/actuator/health/liveness
+http://34.121.58.2:8000/actuator/health/readiness
